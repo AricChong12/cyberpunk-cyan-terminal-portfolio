@@ -2145,6 +2145,19 @@ img {
   .contact__grid {
     grid-template-columns: 1fr;
   }
+
+  .cyber-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+
+  .site-wrapper {
+    padding-top: var(--nav-height);
+  }
+
 }
 
 @media (max-width: 640px) {
