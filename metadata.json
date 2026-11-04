@@ -1,0 +1,6 @@
+{
+  "name": "Cyberpunk Cyan Terminal Portfolio",
+  "description": "A high-performance cyberpunk and hacker-themed personal portfolio with neon cyan aesthetics, interactive project carousels, matrix canvas, and full-screen lightbox.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZinWen Portfolio</title>
+  <meta name="description" content="A high-performance cyberpunk and hacker-themed personal portfolio with neon cyan aesthetics, interactive project carousels, matrix canvas, and full-screen lightbox.">
+  <meta name="theme-color" content="#050508">
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Cyberpunk Cyan Terminal Portfolio">
+  <meta property="og:description" content="Cyberpunk & Hacker Terminal Portfolio featuring interactive carousels, matrix rain, and full-screen lightbox.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Inline Cyan Cyber Favicon 
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23050508'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%2300f0ff' stroke-width='2'/%3E%3Cpolygon points='16,8 24,24 8,24' fill='%2300f0ff' opacity='0.8'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%23ff2a6d'/%3E%3C/svg%3E">
+  -->
+
+  <link rel="icon" type="image/png" href="images/favi.png">
+
+  <!-- Google Fonts: Orbitron & Share Tech Mono with Monospace Fallbacks -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+  <!-- Main Cyberpunk Stylesheet -->
+  <link rel="stylesheet" href="./style.css">
+
+  <!-- Vanilla JS Engine (Deferred) -->
+  <script defer src="./script.js"></script>
+</head>
+<body>
+
+  <!-- Ambient Matrix Digital Rain Canvas -->
+  <canvas id="matrix-canvas" aria-hidden="true"></canvas>
+
+  <!-- CRT Scanlines & Screen Vignette Overlay -->
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <div class="site-wrapper">
+
+    <!-- ======================================================================
+         STICKY NAVIGATION BAR
+         To edit navigation links or title, update the hrefs and labels below.
+         ====================================================================== -->
+    <header class="cyber-nav" role="banner">
+      <div class="container cyber-nav__container">
+        
+        <!-- Brand / Identity -->
+        <a href="#home" class="cyber-nav__brand" aria-label="Navigate to Home">
+          <span class="cyber-nav__brand-prefix">&gt;</span>
+          <span class="cyber-nav__brand-name">Zin Wen</span>
+          <span class="cyber-nav__brand-dot" aria-hidden="true"></span>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="cyber-nav__desktop" role="navigation" aria-label="Main Navigation">
+          <ul class="cyber-nav__links">
+            <li><a href="#home" class="cyber-nav__link active"><span class="cyber-nav__link-num">01</span>// HOME</a></li>
+            <li><a href="#about" class="cyber-nav__link"><span class="cyber-nav__link-num">02</span>// ABOUT</a></li>
+            <li><a href="#photo" class="cyber-nav__link"><span class="cyber-nav__link-num">03</span>// PHOTO</a></li>
+            <li><a href="#education" class="cyber-nav__link"><span class="cyber-nav__link-num">04</span>// EDU</a></li>
+            <li><a href="#experience" class="cyber-nav__link"><span class="cyber-nav__link-num">05</span>// EXP</a></li>
+            <li><a href="#projects" class="cyber-nav__link"><span class="cyber-nav__link-num">06</span>// PROJ</a></li>
+            <li><a href="#competitions" class="cyber-nav__link"><span class="cyber-nav__link-num">07</span>// COMP</a></li>
+            <li><a href="#volunteering" class="cyber-nav__link"><span class="cyber-nav__link-num">08</span>// VOL</a></li>
+            <li><a href="#certifications" class="cyber-nav__link"><span class="cyber-nav__link-num">09</span>// CERT</a></li>
+            <li><a href="#contact" class="cyber-nav__link"><span class="cyber-nav__link-num">10</span>// CONTACT</a></li>
+          </ul>
+        </nav>
+
+        <!-- Navbar Actions: Sound FX Toggle & Mobile Hamburger -->
+        <div class="cyber-nav__actions">
+          <!--
+          <button type="button" class="sfx-toggle" id="sfx-toggle" aria-label="Toggle Cyber Sound Effects" aria-pressed="false" title="Toggle cyber sound synthesizer (Native Web Audio)">
+            <span>SFX:</span>
+            <span class="sfx-status">OFF</span>
+          </button>-->
+
+          <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Toggle Mobile Navigation Menu" aria-expanded="false" aria-controls="nav-drawer">
+            <span class="nav-toggle__bar" aria-hidden="true"></span>
+            <span class="nav-toggle__bar" aria-hidden="true"></span>
+            <span class="nav-toggle__bar" aria-hidden="true"></span>
+          </button>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="nav-drawer" id="nav-drawer" aria-hidden="true">
+      <ul class="nav-drawer__list">
+        <li><a href="#home" class="nav-drawer__link"><span class="cyber-nav__link-num">01</span>// HOME</a></li>
+        <li><a href="#about" class="nav-drawer__link"><span class="cyber-nav__link-num">02</span>// ABOUT</a></li>
+        <li><a href="#photo" class="nav-drawer__link"><span class="cyber-nav__link-num">03</span>// PHOTO</a></li>
+        <li><a href="#education" class="nav-drawer__link"><span class="cyber-nav__link-num">04</span>// EDUCATION</a></li>
+        <li><a href="#experience" class="nav-drawer__link"><span class="cyber-nav__link-num">05</span>// EXPERIENCE</a></li>
+        <li><a href="#projects" class="nav-drawer__link"><span class="cyber-nav__link-num">06</span>// PROJECTS</a></li>
+        <li><a href="#competitions" class="nav-drawer__link"><span class="cyber-nav__link-num">07</span>// COMPETITIONS</a></li>
+        <li><a href="#volunteering" class="nav-drawer__link"><span class="cyber-nav__link-num">08</span>// VOLUNTEERING</a></li>
+        <li><a href="#certifications" class="nav-drawer__link"><span class="cyber-nav__link-num">09</span>// CERTIFICATIONS</a></li>
+        <li><a href="#contact" class="nav-drawer__link"><span class="cyber-nav__link-num">10</span>// CONTACT</a></li>
+      </ul>
+    </div>
+
+    <!-- MAIN PAGE CONTENT -->
+    <main id="main-content">
+
+      <!-- ======================================================================
+           1. HERO / HOME SECTION
+           Edit name, roles, tagline, and button links here.
+           ====================================================================== -->
+      <section class="section hero" id="home" aria-label="Hero Section">
+        <div class="container hero__container">
+          <div class="hero__grid">
+            
+            <div class="hero__content">
+              <!-- Live HUD Telemetry Status -->
+              <div class="hero__status-bar">
+                <span class="hero__status-item"><span class="hero__status-val">SYS_STATUS:</span> ONLINE</span>
+                <span class="hero__status-item"><span class="hero__status-val">LATENCY:</span> 12ms</span>
+                <span class="hero__status-item"><span class="hero__status-val">PROTOCOL:</span> SEC_SSHv3</span>
+                <span class="hero__status-item"><span class="hero__status-val">CLEARANCE:</span> ROOT_ACCESS</span>
+              </div>
+
+              <!-- Terminal Prompt Line -->
+              <div class="hero__cmd-line">
+                <span class="hero__prompt">root@terminal:~$</span>
+                <span>whoami</span>
+              </div>
+
+              <!-- Glitch Name Header -->
+              <h1 class="hero__title glitch-text" data-text="Zin Wen">Zin Wen</h1>
+
+              <!-- Dynamic Typewriter Roles -->
+              <div class="hero__subtitle-wrapper">
+                <span class="hero__prompt">&gt;</span>
+                <span class="hero__subtitle" id="typing-role">[MY ROLE]</span>
+                <span class="hero__cursor" aria-hidden="true"></span>
+              </div>
+
+              <!-- Lead Description Tagline -->
+              <p class="hero__bio-lead">
+                Aspirng Network & Cybersecurity Professional.
+                <strong>Building, Automating, Intellectualizing and Securing Network Systems</strong>, <strong>Explore tech and upskill</strong>, 
+                and participate, plan, manage, run and host Cybersecurity events 
+              </p>
+
+              <!-- Call to Action Buttons -->
+              <div class="hero__actions">
+                <a href="#projects" class="cyber-btn cyber-btn--primary">
+                  <span>[ VIEW PROJECTS ]</span>
+                </a>
+                <a href="#contact" class="cyber-btn">
+                  <span>[ CONTACT ME ]</span>
+                </a>
+              </div>
+
+              <!-- Hero HUD Telemetry Stats -->
+              <div class="hero__telemetry">
+                <div class="telemetry-card">
+                  <div class="telemetry-card__label">Competitions</div>
+                  <div class="telemetry-card__value">5+</div>
+                </div>
+                <div class="telemetry-card">
+                  <div class="telemetry-card__label">Projects Completed</div>
+                  <div class="telemetry-card__value">10+</div>
+                </div>
+                <div class="telemetry-card">
+                  <div class="telemetry-card__label">Certifications</div>
+                  <div class="telemetry-card__value">20+</div>
+                </div>
+                <div class="telemetry-card">
+                  <div class="telemetry-card__label">IT</div>
+                  <div class="telemetry-card__value">3.5 Yrs</div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           2. ABOUT SECTION
+           Edit bio text and technical skills chips in this terminal-window card.
+           ====================================================================== -->
+      <section class="section about" id="about" aria-label="About Section">
+        <div class="container">
+          
+          <header class="section-header reveal-item">
+            <div class="section-cmd"><span class="section-cmd__prompt">&gt;</span> cd ./about &amp;&amp; cat bio.sh</div>
+            <h2 class="section-title">ABOUT ME</h2>
+            <p class="section-desc">Kernel telemetry, architectural foundations, and core proficiencies.</p>
+          </header>
+
+          <div class="about__grid">
+            
+            <!-- Terminal Window Card -->
+            <article class="terminal-window cyber-card reveal-item">
+              <div class="terminal-header">
+                <div class="terminal-header__dots">
+                  <span class="terminal-dot terminal-dot--red"></span>
+                  <span class="terminal-dot terminal-dot--yellow"></span>
+                  <span class="terminal-dot terminal-dot--green"></span>
+                </div>
+                <div class="terminal-header__title">bash — 80x24 — bio.sh</div>
+                <div class="terminal-header__status">
+                  <span class="status-indicator-dot"></span>
+                  <span>PROC_RUNNING</span>
+                </div>
+              </div>
+
+              <div class="terminal-body about__text">
+                <p class="about__comment"># [Zin Wen] // Network & Cybersecurity Professional</p>
+                <p>
+                  I am a passionate and committed individual who designs aand builds wired or wireless networks.
+                  Harnessing my experience in Cybersecurity and Software Enginnering as supports to my networking core
+                  expertise to build network systems.
+                </p>
+                <p>
+                  I enjoy exploring technologies and upskiling myself and competing in Hackathons and Capture The Flag (CTF).
+                  I also involve in tech event operations, community maanagement and moderation, and lastly CTF challenge creator. 
+
+                </p>
+                <p class="about__comment"># Mission objective: Building and Automating, Intellectualizing and Securing Network Systems</p>
+              </div>
+            </article>
+
+            <!-- Key Stats & Glowing Chips -->
+            <div class="about__stats-container reveal-item">
+              
+              <div class="cyber-card about__chips-card">
+                <h3 class="about__chips-title">CORE STACK</h3>
+                <div class="about__chips-group">
+                  <span class="tech-tag">HTML</span>
+                  <span class="tech-tag">CSS</span>
+                  <span class="tech-tag">JavaScript</span>
+                  <span class="tech-tag">PHP</span>
+                  <span class="tech-tag">MySQL</span>
+                  <span class="tech-tag">SQL</span>
+                  <span class="tech-tag">ReactJS</span>
+                </div>
+
+                <h3 class="about__chips-title" style="margin-top: 18px;">NETWORKING & SECURITY</h3>
+                <div class="about__chips-group">
+                  <span class="tech-tag">LAN</span>
+                  <span class="tech-tag">WAN</span>
+                  <span class="tech-tag">Network Analysis & Design</span>
+                  <span class="tech-tag">Fiber Optics</span>
+                  <span class="tech-tag">CTF</span>
+                  
+                </div>
+
+                <h3 class="about__chips-title" style="margin-top: 18px;">INTERESTS</h3>
+                <div class="about__chips-group">
+                  <span class="tech-tag">Cybersecurity</span>
+                  <span class="tech-tag">Artificial Intelligence</span>
+                  <span class="tech-tag">Mobile Application Development</span>
+                  <span class="tech-tag">Cloud Computing</span>
+                  <span class="tech-tag">Quantum Computing</span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           3. PERSONAL PHOTO SECTION
+           Framed photo with cyberpunk brackets, HUD scanlines, and click-to-enlarge.
+           To change photo: replace images/profile.jpg with your own image file.
+           ====================================================================== -->
+      <section class="section photo-section" id="photo" aria-label="Personal Photo Section">
+        <div class="container">
+          
+          <header class="section-header reveal-item">
+            <div class="section-cmd"><span class="section-cmd__prompt">&gt;</span> view ./biometrics/id_photo.raw</div>
+            <h2 class="section-title">BIOMETRIC RECORD</h2>
+            <p class="section-desc">Facial telemetry capture, operative credential validation, and identity profile.</p>
+          </header>
+
+          <div class="photo-section__grid">
+            
+            <!-- Cyberpunk Framed Profile Photo -->
+            <div class="photo-card corner-brackets reveal-item">
+              <div class="photo-card__hud-top">
+                <span>SUBJECT_ID: #00-7702-X</span>
+                <span>CLEARANCE: ROOT</span>
+              </div>
+
+              <!-- Frame with scanline overlay -->
+              <div class="photo-card__frame">
+                <img 
+                  src="images/me.png" 
+                  alt="ZinWen - Personal Biometric Photo" 
+                  class="photo-card__image"
+                  loading="lazy"
+                  data-lightbox="profile"
+                  data-caption="ZinWen — Biometric ID #00-7702-X"
+                >
+                <div class="photo-card__scanner" aria-hidden="true"></div>
+              </div>
+
+              <div class="photo-card__hud-bottom">
+                <span class="photo-card__enlarge-hint">🔍 [CLICK TO ENLARGE]</span>
+                <span>STATUS: VERIFIED</span>
+              </div>
+            </div>
+
+            <!-- Profile Description & Telemetry -->
+            <article class="photo-bio__card cyber-card reveal-item">
+              <div class="photo-bio__header">
+                <h3 class="photo-bio__name">Zin Wen</h3>
+                <div class="photo-bio__role">Aspiring Network & Cybersecurity Professional</div>
+              </div>
+
+              <p class="photo-bio__desc">
+                I am a 3rd year undergraduate student pursuing a Bachelor's degree in Computer Science with a specialization in 
+                Computer Networking at Universiti Teknikal Malaysia Melaka, UTeM.
+              </p>
+
+              <ul class="photo-bio__telemetry-list">
+                <li class="photo-bio__telemetry-item">
+                  <span class="photo-bio__telemetry-label">Primary Frequency</span>
+                  <span class="photo-bio__telemetry-val">zinwen12@gmail.com</span>
+                </li>
+                <li class="photo-bio__telemetry-item">
+                  <span class="photo-bio__telemetry-label">Signal Coordinates</span>
+                  <span class="photo-bio__telemetry-val">Negeri Sembilan, Malaysia</span>
+                </li>
+                <li class="photo-bio__telemetry-item">
+                  <span class="photo-bio__telemetry-label">Clearance</span>
+                  <span class="photo-bio__telemetry-val">Network Enginner</span>
+                </li>
+                <li class="photo-bio__telemetry-item">
+                  <span class="photo-bio__telemetry-label">PGP Fingerprint</span>
+                  <span class="photo-bio__telemetry-val">9F4C 2A18 E581 D03B</span>
+                </li>
+              </ul>
+            </article>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           4. EDUCATION SECTION
+           Vertical timeline of academic degrees, coursework, and honors.
+           To add an item: duplicate an <article class="timeline__item"> block.
+           ====================================================================== -->
+      <section class="section education" id="education" aria-label="Education Section">
+        <div class="container">
+          
+          <header class="section-header reveal-item">
+            <div class="section-cmd"><span class="section-cmd__prompt">&gt;</span> cat ./records/education.log</div>
+            <h2 class="section-title">EDUCATION</h2>
+            <p class="section-desc">Academic credentials, theoretical computer science, and networking specialization.</p>
+          </header>
+
+          <div class="timeline">
+            
+            <!-- Education Entry 1 -->
+            <article class="timeline__item reveal-item">
+              <div class="timeline__node" aria-hidden="true"></div>
+              <div class="timeline__content cyber-card">
+                <div class="timeline__header">
+                  <h3 class="timeline__title">B.S. in Computer Science ( Computer Networking )</h3>
+                  <span class="timeline__period">2024 – 2028</span>
+                </div>
+                <div class="timeline__institution">
+                  <strong>Universiti Teknikal Malaysia Melaka (UTeM)</strong> // CGPA: 
+                </div>
+                <ul class="timeline__bullets">
+                  <li class="timeline__bullet">Honors Capstone: </li>
+                  <li class="timeline__bullet">Core coursework: </li>
+                  <li class="timeline__bullet">Club: WhatApps and Discord Community Admin of CyberOps UTeM (400+ members).</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Education Entry 2 
+            <article class="timeline__item reveal-item">
+              <div class="timeline__node" aria-hidden="true"></div>
+              <div class="timeline__content cyber-card">
+                <div class="timeline__header">
+                  <h3 class="timeline__title">[INSTITUTION / PROGRAM / YEARS]</h3>
+                  <span class="timeline__period">2016 – 2020</span>
+                </div>
+                <div class="timeline__institution">
+                  <strong>[INSTITUTION]</strong> // STEM Honors &amp; Advanced Computing
+                </div>
+                <ul class="timeline__bullets">
+                  <li class="timeline__bullet">National Olympiad in Informatics Finalist; Captain of Competitive Robotics Programming Team.</li>
+                  <li class="timeline__bullet">Advanced Placement Computer Science A (Score: 5/5), AP Calculus BC (Score: 5/5), AP Physics C.</li>
+                  <li class="timeline__bullet">Authored school district's first automated course scheduling algorithm using Python &amp; constraint solvers.</li>
+                </ul>
+              </div>
+            </article>-->
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           5. EXPERIENCE SECTION
+           Vertical timeline of career milestones, roles, and achievements.
+           To add an item: duplicate an <article class="timeline__item"> block.
+           ====================================================================== -->
+      <section class="section experience" id="experience" aria-label="Experience Section">
+        <div class="container">
+          
+          <header class="section-header reveal-item">
+            <div class="section-cmd"><span class="section-cmd__prompt">&gt;</span> git log --graph ./career</div>
+            <h2 class="section-title">EXPERIENCE</h2>
+            <p class="section-desc">Always, Hands On</p>
+          </header>
+
+          <div class="timeline">
+            
+            <!-- Experience Entry 1 -->
+            <article class="timeline__item reveal-item">
+              <div class="timeline__node" aria-hidden="true"></div>
+              <div class="timeline__content cyber-card">
+                <div class="timeline__header">
+                  <h3 class="timeline__title">Food & Beverage Sales Assistant</h3>
+                  <span class="timeline__period">2026 – PRESENT (Part-Time)</span>
+                </div>
+                <div class="timeline__institution">
+                  <strong>Koperasi UTeM Berhad</strong> // Sales & Customer Service
+                </div>
+                <ul class="timeline__bullets">
+                  <li class="timeline__bullet">Serves customers by selecting and retrieving requested food items, packaging food products, and preparing orders for collection.</li>
+                  <li class="timeline__bullet">Recommends suitable food items to customers, including bread, sandwiches, pizza, rice, pudding, and fruit.</li>
+                  <li class="timeline__bullet">Receives and Manages customer orders to ensure accurate order fulfilment.</li>
+                  <li class="timeline__bullet">Supports intern in carrying out their assigned duties and daily operational tasks.</li>
+                  <li class="timeline__bullet">Replenishes food products and packaging supplies, including pizza boxes, to maintain stock availability.</li>
+                  <li class="timeline__bullet">Handles cash transactions, exchanges physical currency with customers, and verifies payments to ensure accurate payment processing.</li>
+                  <li class="timeline__bullet">Heats prepared food items using a microwave while ensuring proper food handling and preparation.</li>
+                  <li class="timeline__bullet">Cleans and sanitises customer-used plates and food-service equipment to maintain workplace hygiene and cleanliness.</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Experience Entry 2 
+            <article class="timeline__item reveal-item">
+              <div class="timeline__node" aria-hidden="true"></div>
+              <div class="timeline__content cyber-card">
+                <div class="timeline__header">
+                  <h3 class="timeline__title">Software Engineering Intern</h3>
+                  <span class="timeline__period">[COMPANY / ROLE / DATES]</span>
+                </div>
+                <div class="timeline__institution">
+                  <strong>[COMPANY]</strong> // Platform Architecture Team
+                </div>
+                <ul class="timeline__bullets">
+                  <li class="timeline__bullet">Developed real-time network flow telemetry dashboard leveraging WebSockets and Canvas rendering, handling 15,000 events/sec.</li>
+                  <li class="timeline__bullet">Integrated OpenID Connect (OIDC) single sign-on across 8 legacy internal microservices with zero downtime.</li>
+                  <li class="timeline__bullet">Authored comprehensive security penetration test report leading to immediate remediation of 3 critical auth bypass bugs.</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Experience Entry 3 
+            <article class="timeline__item reveal-item">
+              <div class="timeline__node" aria-hidden="true"></div>
+              <div class="timeline__content cyber-card">
+                <div class="timeline__header">
+                  <h3 class="timeline__title">Security Researcher &amp; Core Contributor</h3>
+                  <span class="timeline__period">2022 – 2023</span>
+                </div>
+                <div class="timeline__institution">
+                  <strong>Open Source Security Community</strong> // Cryptographic Protocol Auditing
+                </div>
+                <ul class="timeline__bullets">
+                  <li class="timeline__bullet">Audited decentralized peer-to-peer storage protocols; submitted patches for 5 memory-safety flaws in Rust/C++ modules.</li>
+                  <li class="timeline__bullet">Benchmarked post-quantum lattice-based encryption implementations against classical AES-256 for mobile browsers.</li>
+                </ul>
+              </div>
+            </article>-->
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           6. PROJECTS SECTION (WITH INDEPENDENT CAROUSELS)
+           Each project has its own carousel instance with 16:9 letterbox frame,
+           prev/next controls, dot indicators, counter, swipe, and click-to-enlarge.
+           To add a project: copy an entire <article class="project-card cyber-card">.
+           ====================================================================== -->
+      <section class="section projects" id="projects" aria-label="Projects Section">
+        <div class="container">
+          
+          <header class="section-header reveal-item">
+            <div class="section-cmd"><span class="section-cmd__prompt">&gt;</span> ls -la ./projects/featured/</div>
+            <h2 class="section-title">FEATURED PROJECTS</h2>
+            <p class="section-desc">University Projects</p>
+          </header>
+
+          <div class="projects-grid">
+
+            <!-- PROJECT 1: NeuralSentinel -->
+            <article class="project-card cyber-card reveal-item">
+              
+              <!-- Independent Carousel for Project 1 -->
+              <div class="carousel" id="carousel-project-1" aria-label="NeuralSentinel Project Carousel">
+                <div class="carousel__viewport">
+                  
+                  <div class="carousel__hud-top">
+                    <span class="carousel__badge">LOCAL AREA NETWORKS</span>
+                    <span class="carousel__counter">01 / 01</span>
+                  </div>
+
+                  <div class="carousel__track">
+                    <div class="carousel__slide">
+                      <img 
+                        src="images/projects/lan.png" 
+                        alt="Local Area Networks - Company XYZ" 
+                        class="carousel__image"
+                        loading="eager"
+                        data-lightbox="project-1"
+                        data-caption="Local Area Networks"
+                      >
+                    </div>
+                    <!--
+                    <div class="carousel__slide">
+                      <img 
+                        src="images/projects/neural-sentinel/2.jpg" 
+                        alt="NeuralSentinel - eBPF Kernel Probe Telemetry Stream" 
+                        class="carousel__image"
+                        loading="lazy"
+                        data-lightbox="project-1"
+                        data-caption="NeuralSentinel Slide 02: eBPF Kernel Probe Telemetry Stream &amp; Syscall Tracing"
+                      >
+                    </div>
+                    <div class="carousel__slide">
+                      <img 
+                        src="images/projects/neural-sentinel/3.jpg" 
+                        alt="NeuralSentinel - Deep Learning Anomaly Classification Matrix" 
+                        class="carousel__image"
+                        loading="lazy"
+                        data-lightbox="project-1"
+                        data-caption="NeuralSentinel Slide 03: Deep Learning Anomaly Classification Matrix &amp; Risk Scoring"
+                      >
+                    </div>
+                    <div class="carousel__slide">
+                      <img 
+                        src="images/projects/neural-sentinel/4.jpg" 
+                        alt="NeuralSentinel - Automated Exploit Mitigation Console" 
+                        class="carousel__image"
+                        loading="lazy"
+                        data-lightbox="project-1"
+                        data-caption="NeuralSentinel Slide 04: Automated Exploit Mitigation Console &amp; Dynamic Firewall Rule Injector"
+                      >
+                    </div>-->
+                  </div>
+
+                  <!-- Arrow Controls -->
+                  <button type="button" class="carousel__nav-btn carousel__nav-btn--prev" aria-label="Previous slide">&#10094;</button>
+                  <button type="button" class="carousel__nav-btn carousel__nav-btn--next" aria-label="Next slide">&#10095;</button>
+                </div>
+
+                <!-- Bottom Bar: Clickable Dots & Zoom Hint -->
+                <div class="carousel__bottom-bar">
+                  <div class="carousel__dots" aria-label="Carousel slide dots"></div>
+                  <span class="carousel__zoom-hint">🔍 CLICK IMAGE TO ENLARGE</span>
+                </div>
+              </div>
+
+              <!-- Project 1 Information -->
+              <div class="project-info">
+                <div class="project-info__header">
+                  <div class="project-info__num">PROJ_01 // NETWORKING</div>
+                  <h3 class="project-info__title">Local Area Networks</h3>
+                </div>
+
+                <p class="project-info__desc">
+                  An enterprise network for Company XYZ, featuring VLAN segmentation, VLSM subnetting, inter-VLAN routing, centralized network services, and enhanced security mechanisms.
+                </p>
+
+                <div class="project-info__tags">
+                  <span class="tech-tag">VLAN Segmentation & Subnetting</span>
+                  <span class="tech-tag">Inter-VLAN Routing</span>
+                  <span class="tech-tag">DHCP</span>
+                  <span class="tech-tag">DNS</span>
+                  <span class="tech-tag">Web</span>
+                  <span class="tech-tag">TFTP</span>
+                  <span class="tech-tag">STP</span>
+                  <span class="tech-tag">Etherchannel</span>
+                  <span class="tech-tag">Port Security</span>
+                  
+                </div>
+
+                <div class="project-info__links">
+                  <a href="https://github.com/AricChong12/LAN-Project" target="_blank" rel="noopener noreferrer" class="cyber-btn cyber-btn--sm">
+                    <span>[ GITHUB REPO ]</span>
+                  </a>
+                  <!--
+                  <a href="[URL]" target="_blank" rel="noopener noreferrer" class="cyber-btn cyber-btn--sm cyber-btn--primary">
+                    <span>[ LIVE DEMO ]</span>
+                  </a>-->
+                </div>
+              </div>
+
+            </article>
+
+            <!-- PROJECT 2: CyberNexus -->
+            <article class="project-card cyber-card reveal-item">
+              
+              <!-- Independent Carousel for Project 2 -->
+              <div class="carousel" id="carousel-project-2" aria-label="CyberNexus Project Carousel">
+                <div class="carousel__viewport">
+                  
+                  <div class="carousel__hud-top">
+                    <span class="carousel__badge">NETWORK ANALYSIS & DESIGN</span>
+                    <span class="carousel__counter">01 / 02</span>
+                  </div>
+
+                  <div class="carousel__track">
+                    <div class="carousel__slide">
+                      <img 
+                        src="images/projects/nad1.png" 
+                        alt="CyberNexus - Zero-Knowledge Mesh Topology" 
+                        class="carousel__image"
+                        loading="lazy"
+                        data-lightbox="project-2"
+                        data-caption="CyberNexus Slide 01: Zero-Knowledge Decentralized Topology &amp; Peer Graph"
+                      >
+                    </div>
+                    <div class="carousel__slide">
+                      <img 
+                        src="images/projects/nad2.png" 
+                        alt="CyberNexus - WebAssembly Peer Protocol Engine" 
+                        class="carousel__image"
+                        loading="lazy"
+                        data-lightbox="project-2"
+                        data-caption="CyberNexus Slide 02: WebAssembly In-Browser Peer Protocol Engine"
+                      >
+                    </div>
+                    <!---
+                    <div class="carousel__slide">
+                      <img 
+                        src="images/projects/cyber-nexus/3.jpg" 
+                        alt="CyberNexus - End-to-End Cryptographic Handshake Audit" 
+                        class="carousel__image"
+                        loading="lazy"
+                        data-lightbox="project-2"
+                        data-caption="CyberNexus Slide 03: End-to-End Cryptographic Handshake Audit &amp; Forward Secrecy"
+                      >
+                    </div>
+                    <div class="carousel__slide">
+                      <img 
+                        src="images/projects/cyber-nexus/4.jpg" 
+                        alt="CyberNexus - Peer Routing &amp; Latency Benchmark Dashboard" 
+                        class="carousel__image"
+                        loading="lazy"
+                        data-lightbox="project-2"
+                        data-caption="CyberNexus Slide 04: Peer Routing &amp; Latency Benchmark Telemetry Dashboard"
+                      >
+                    </div>
+                    -->
+                  </div>
+
+                  <!-- Arrow Controls -->
+                  <button type="button" class="carousel__nav-btn carousel__nav-btn--prev" aria-label="Previous slide">&#10094;</button>
+                  <button type="button" class="carousel__nav-btn carousel__nav-btn--next" aria-label="Next slide">&#10095;</button>
+                </div>
+
+                <!-- Bottom Bar: Clickable Dots & Zoom Hint -->
+                <div class="carousel__bottom-bar">
+                  <div class="carousel__dots" aria-label="Carousel slide dots"></div>
+                  <span class="carousel__zoom-hint">🔍 CLICK IMAGE TO ENLARGE</span>
+                </div>
+              </div>
+
+              <!-- Project 2 Information -->
+              <div class="project-info">
+                <div class="project-info__header">
+                  <div class="project-info__num">PROJ_02 // NETWORKING</div>
+                  <h3 class="project-info__title">Network Analysis & Design</h3>
+                </div>
+
+                <p class="project-info__desc">
+                  An enterprise network security and monitoring solution featuring centralized logging, firewall protection, DMZ architecture, ACLs, honeypots, and collaborative project planning.
+                </p>
+
+                <div class="project-info__tags">
+                  <span class="tech-tag">Network Security Design</span>
+                  <span class="tech-tag">Network Management Design</span>
+                  
+                </div>
+                <!--
+                <div class="project-info__links">
+                  <a href="[URL]" target="_blank" rel="noopener noreferrer" class="cyber-btn cyber-btn--sm">
+                    <span>[ GITHUB REPO ]</span>
+                  </a>
+                  <a href="[URL]" target="_blank" rel="noopener noreferrer" class="cyber-btn cyber-btn--sm cyber-btn--primary">
+                    <span>[ LIVE DEMO ]</span>
+                  </a>
+                </div>-->
+              </div>
+
+            </article>
+
+            <!-- PROJECT 3: QuantumVault -->
+            <article class="project-card cyber-card reveal-item">
+              
+              <!-- Independent Carousel for Project 3 -->
+              <div class="carousel" id="carousel-project-3" aria-label="QuantumVault Project Carousel">
+                <div class="carousel__viewport">
+                  
+                  <div class="carousel__hud-top">
+                    <span class="carousel__badge">WIDE AREA NETWORKS</span>
+                    <span class="carousel__counter">01 / 05</span>
+                  </div>
+
+                  <div class="carousel__track">
+                    <div class="carousel__slide">
+                      <img 
+                        src="images/projects/wan1.png" 
+                        alt="QuantumVault - Post-Quantum Lattice Cipher (Kyber-1024)" 
+                        class="carousel__image"
+                        loading="lazy"
+                        data-lightbox="project-3"
+                        data-caption="QuantumVault Slide 01: Post-Quantum Lattice Cipher (Kyber-1024) Implementation"
+                      >
+                    </div>
+                    <div class="carousel__slide">
+                      <img 
+                        src="images/projects/wan2.png" 
+                        alt="QuantumVault - Sharded Cloud Block Encryption Pipeline" 
+                        class="carousel__image"
+                        loading="lazy"
+                        data-lightbox="project-3"
+                        data-caption="QuantumVault Slide 02: Sharded Cloud Block Encryption &amp; Dispersal Pipeline"
+                      >
+                    </div>
+                    <div class="carousel__slide">
+                      <img 
+                        src="images/projects/wan3.png" 
+                        alt="QuantumVault - Cryptographic Key Escrow &amp; Audit Logs" 
+                        class="carousel__image"
+                        loading="lazy"
+                        data-lightbox="project-3"
+                        data-caption="QuantumVault Slide 03: Cryptographic Key Escrow &amp; Immutable Audit Logs"
+                      >
+                    </div>
+                    <div class="carousel__slide">
+                      <img 
+                        src="images/projects/wan4.png" 
+                        alt="QuantumVault - Zero-Knowledge Proof Storage Verification" 
+                        class="carousel__image"
+                        loading="lazy"
+                        data-lightbox="project-3"
+                        data-caption="QuantumVault Slide 04: Zero-Knowledge Proof Storage Integrity Verification"
+                      >
+                    </div>
+                    <div class="carousel__slide">
+                      <img 
+                        src="images/projects/wan5.png" 
+                        alt="QuantumVault - Zero-Knowledge Proof Storage Verification" 
+                        class="carousel__image"
+                        loading="lazy"
+                        data-lightbox="project-3"
+                        data-caption="QuantumVault Slide 04: Zero-Knowledge Proof Storage Integrity Verification"
+                      >
+                    </div>
+                  </div>
+
+                  <!-- Arrow Controls -->
+                  <button type="button" class="carousel__nav-btn carousel__nav-btn--prev" aria-label="Previous slide">&#10094;</button>
+                  <button type="button" class="carousel__nav-btn carousel__nav-btn--next" aria-label="Next slide">&#10095;</button>
+                </div>
+
+                <!-- Bottom Bar: Clickable Dots & Zoom Hint -->
+                <div class="carousel__bottom-bar">
+                  <div class="carousel__dots" aria-label="Carousel slide dots"></div>
+                  <span class="carousel__zoom-hint">🔍 CLICK IMAGE TO ENLARGE</span>
+                </div>
+              </div>
+
+              <!-- Project 3 Information -->
+              <div class="project-info">
+                <div class="project-info__header">
+                  <div class="project-info__num">PROJ_03 // NETWORKING</div>
+                  <h3 class="project-info__title">Wide Area Networks</h3>
+                </div>
+
+                <p class="project-info__desc">
+                  A comprehensive LAN/WAN network infrastructure featuring VLAN segmentation, inter-VLAN routing, ACLs, DHCPv4, eBGP, IPsec, PAT, PPP, and secure device management.
+                </p>
+
+                <div class="project-info__tags">
+                  <span class="tech-tag">VLAN</span>
+                  <span class="tech-tag">Trunking</span>
+                  <span class="tech-tag">Inter-VLAN</span>
+                  <span class="tech-tag">ACLs</span>
+                  <span class="tech-tag">DHCPv4</span>
+                  <span class="tech-tag">eBGP</span>
+                  <span class="tech-tag">IPsec</span>
+                  <span class="tech-tag">PAT</span>
+                  <span class="tech-tag">PPP</span>
+                  <span class="tech-tag">SSH</span>
+                  <span class="tech-tag">Router Security</span>
+                </div>
+
+                <div class="project-info__links">
+                  <a href="https://github.com/AricChong12/WAN-Project" target="_blank" rel="noopener noreferrer" class="cyber-btn cyber-btn--sm">
+                    <span>[ GITHUB REPO ]</span>
+                  </a>
+                  <!--  
+                  <a href="[URL]" target="_blank" rel="noopener noreferrer" class="cyber-btn cyber-btn--sm cyber-btn--primary">
+                    <span>[ LIVE DEMO ]</span>
+                  </a>
+                </div>-->
+              </div>
+
+            </article>
+
+
+            <!-- PROJECT 4: QuantumVault -->
+            <article class="project-card cyber-card reveal-item">
+              
+              <!-- Independent Carousel for Project 3 -->
+              <div class="carousel" id="carousel-project-3" aria-label="QuantumVault Project Carousel">
+                <div class="carousel__viewport">
+                  
+                  <div class="carousel__hud-top">
+                    <span class="carousel__badge">WEB APPLICATION DEVELOPMENT</span>
+                    <span class="carousel__counter">01 / 01</span>
+                  </div>
+
+                  <div class="carousel__track">
+                    <div class="carousel__slide">
+                      <img 
+                        src="images/projects/web1.png" 
+                        alt="QuantumVault - Post-Quantum Lattice Cipher (Kyber-1024)" 
+                        class="carousel__image"
+                        loading="lazy"
+                        data-lightbox="project-3"
+                        data-caption="QuantumVault Slide 01: Post-Quantum Lattice Cipher (Kyber-1024) Implementation"
+                      >
+                    </div>
+                    
+                  </div>
+
+                  <!-- Arrow Controls -->
+                  <button type="button" class="carousel__nav-btn carousel__nav-btn--prev" aria-label="Previous slide">&#10094;</button>
+                  <button type="button" class="carousel__nav-btn carousel__nav-btn--next" aria-label="Next slide">&#10095;</button>
+                </div>
+
+                <!-- Bottom Bar: Clickable Dots & Zoom Hint -->
+                <div class="carousel__bottom-bar">
+                  <div class="carousel__dots" aria-label="Carousel slide dots"></div>
+                  <span class="carousel__zoom-hint">🔍 CLICK IMAGE TO ENLARGE</span>
+                </div>
+              </div>
+
+              <!-- Project 3 Information -->
+              <div class="project-info">
+                <div class="project-info__header">
+                  <div class="project-info__num">PROJ_04 // SOFTWARE ENGINEERING</div>
+                  <h3 class="project-info__title">Web Application Development</h3>
+                </div>
+
+                <p class="project-info__desc">
+                  A full-stack business registration web application, BRWGo, featuring online business registration, renewal, termination, administrative management, and database integration.
+                </p>
+
+                <div class="project-info__tags">
+                  <span class="tech-tag">HTML</span>
+                  <span class="tech-tag">CSS</span>
+                  <span class="tech-tag">JavaScript</span>
+                  <span class="tech-tag">PHP</span>
+                  <span class="tech-tag">MySQL</span>
+                  <span class="tech-tag">Web Design</span>
+                  <span class="tech-tag">Web Hosting</span>
+                  
+                </div>
+
+                <div class="project-info__links">
+                  <a href="https://github.com/AricChong12/WebAppProject" target="_blank" rel="noopener noreferrer" class="cyber-btn cyber-btn--sm">
+                    <span>[ GITHUB REPO ]</span>
+                  </a>
+                  <!--  
+                  <a href="[URL]" target="_blank" rel="noopener noreferrer" class="cyber-btn cyber-btn--sm cyber-btn--primary">
+                    <span>[ LIVE DEMO ]</span>
+                  </a>
+                </div>-->
+              </div>
+
+            </article>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           7. COMPETITIONS SECTION
+           Cards displaying competitive hacking, CTF awards, and hackathon medals.
+           To add an entry: duplicate an <article class="comp-card cyber-card">.
+           ====================================================================== -->
+      <section class="section competitions" id="competitions" aria-label="Competitions Section">
+        <div class="container">
+          
+          <header class="section-header reveal-item">
+            <div class="section-cmd"><span class="section-cmd__prompt">&gt;</span> query ./tournaments/results.db</div>
+            <h2 class="section-title">COMPETITIONS &amp; AWARDS</h2>
+            <p class="section-desc">Competitive Hackathons & CTF</p>
+          </header>
+
+          <div class="cards-grid-2">
+            
+            <!-- Competition Entry 1 -->
+            <article class="comp-card cyber-card reveal-item">
+              <div class="comp-card__top">
+                <span class="cyber-badge cyber-badge--gold">1ST PLACE / CHAMPION</span>
+                <span class="comp-card__year">2025</span>
+              </div>
+              <h3 class="comp-card__title">ROBOMASTER Competition</h3>
+              <div class="comp-card__organizer">UKM </div>
+              <p class="comp-card__desc">
+                Achieved team championship while exploring ESP32 programming, robotics development, and competitive robotic gaming challenges.
+              </p>
+            </article>
+
+            <!-- Competition Entry 2 -->
+            <article class="comp-card cyber-card reveal-item">
+              <div class="comp-card__top">
+                <span class="cyber-badge cyber-badge">96 / 336</span>
+                <span class="comp-card__year">2026</span>
+              </div>
+              <h3 class="comp-card__title">Bahtera Siber 3108 CTF</h3>
+              <div class="comp-card__organizer">Bahtera Digital Technology</div>
+              <p class="comp-card__desc">
+                Solved Mobile Exploitation, Misc, Reverse Engineering
+              </p>
+            </article>
+
+            <!-- Competition Entry 3 -->
+            <article class="comp-card cyber-card reveal-item">
+              <div class="comp-card__top">
+                <span class="cyber-badge">95 / 435</span>
+                <span class="comp-card__year">2026</span>
+              </div>
+              <h3 class="comp-card__title">RSTCON CTF 2026</h3>
+              <div class="comp-card__organizer">RSTCON</div>
+              <p class="comp-card__desc">
+                Solved Misc, Cryptography, Forensics, OSINT, Binary Exploitation and Reverse Engineering
+              </p>
+            </article>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           8. VOLUNTEERING SECTION
+           Cards showcasing community mentorship, workshops, and open-source impact.
+           To add an entry: duplicate an <article class="comp-card cyber-card">.
+           ====================================================================== -->
+      <section class="section volunteering" id="volunteering" aria-label="Volunteering Section">
+        <div class="container">
+          
+          <header class="section-header reveal-item">
+            <div class="section-cmd"><span class="section-cmd__prompt">&gt;</span> cat ./community/initiatives.txt</div>
+            <h2 class="section-title">VOLUNTEERING &amp; OUTREACH</h2>
+            <p class="section-desc">Event Operations, Community Management & Moderation and CTF Challenge Creator</p>
+          </header>
+
+          <div class="cards-grid-2">
+            
+            <!-- Volunteering Entry 1 -->
+            <article class="comp-card cyber-card reveal-item">
+              <div class="comp-card__top">
+                <span class="cyber-badge">Community Admin & Challenge Creator</span>
+                <span class="comp-card__year">2026 - PRESENT</span>
+              </div>
+              <h3 class="comp-card__title">Protocol Exco</h3>
+              <div class="comp-card__organizer">CyberOps UTeM FAIX</div>
+              <p class="comp-card__desc">
+                Contributed in event operations, community management and moderation, challenge creator
+              </p>
+            </article>
+
+            <!-- Volunteering Entry 2 -->
+            <article class="comp-card cyber-card reveal-item">
+              <div class="comp-card__top">
+                <span class="cyber-badge">COMMITTEE MEMBER</span>
+                <span class="comp-card__year">2025 - 2026</span>
+              </div>
+              <h3 class="comp-card__title">Technical Team</h3>
+              <div class="comp-card__organizer">Developer Student Club UTeM </div>
+              <p class="comp-card__desc">
+               Contributed to technology events through presentations, documentation, logistics, hosting, and student engagement.
+              </p>
+            </article>
+
+            <!-- Volunteering Entry 3 -->
+            <article class="comp-card cyber-card reveal-item">
+              <div class="comp-card__top">
+                <span class="cyber-badge">COMMITTEE MEMBER</span>
+                <span class="comp-card__year">2024 - 2026</span>
+              </div>
+              <h3 class="comp-card__title">Game Programmer</h3>
+              <div class="comp-card__organizer">TMAC VR Game Devlopment UTeM</div>
+              <p class="comp-card__desc">
+                Contributed to VR game development, international collaboration, programming, and version control management.
+              </p>
+            </article>
+
+            <!-- Volunteering Entry 4 -->
+            <article class="comp-card cyber-card reveal-item">
+              <div class="comp-card__top">
+                <span class="cyber-badge">COMMITTEE MEMBER</span>
+                <span class="comp-card__year">2025 - 2025</span>
+              </div>
+              <h3 class="comp-card__title">Deputy General Affairs</h3>
+              <div class="comp-card__organizer">Diabolo Club UTeM</div>
+              <p class="comp-card__desc">
+               Contributed to event operations, logistics coordination, administrative support, and diabolo performances.
+              </p>
+            </article>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           9. CERTIFICATIONS SECTION
+           Responsive grid of certificates; each image fits frame and is click-to-enlarge.
+           To add an item: duplicate an <article class="cert-card"> block.
+           ====================================================================== -->
+      <section class="section certifications" id="certifications" aria-label="Certifications Section">
+        <div class="container">
+          
+          <header class="section-header reveal-item">
+            <div class="section-cmd"><span class="section-cmd__prompt">&gt;</span> verify --all ./credentials/*.crt</div>
+            <h2 class="section-title">CERTIFICATIONS</h2>
+            <p class="section-desc">Cryptographically verified industry credentials, accreditations, and certifications.</p>
+          </header>
+
+          <div class="certs-grid">
+            
+            <!-- Cert 1 -->
+            <article class="cert-card cyber-card reveal-item">
+              <div class="cert-card__preview">
+                <img 
+                  src="images/certs/ccna1.png" 
+                  alt="CCNA Certification" 
+                  class="cert-card__image"
+                  loading="lazy"
+                  data-lightbox="certs"
+                  data-caption="CCNA — Cisco Certified Network Associate // Verification ID: CCNA-123456"
+                >
+                <div class="cert-card__badge-overlay">CCNA</div>
+              </div>
+              <div class="cert-card__meta">
+                <h3 class="cert-card__title">CCNA — SRWE</h3>
+                <div class="cert-card__issuer">Cisco Networking Academy</div>
+                <!--<div class="cert-card__date">Issued: 2025 // Verified</div>-->
+              </div>
+            </article>
+
+            <!-- Cert 2 -->
+            <article class="cert-card cyber-card reveal-item">
+              <div class="cert-card__preview">
+                <img 
+                  src="images/certs/ccna2.png" 
+                  alt="CISSP Certification" 
+                  class="cert-card__image"
+                  loading="lazy"
+                  data-lightbox="certs"
+                  data-caption="CISSP — Certified Information Systems Security Professional // (ISC)²"
+                >
+                <div class="cert-card__badge-overlay">CCNA</div>
+              </div>
+              <div class="cert-card__meta">
+                <h3 class="cert-card__title">CCNA - ENSA</h3>
+                <div class="cert-card__issuer">Cisco Networking Academy</div>
+                <!--<div class="cert-card__date">Issued: 2025 // Verified</div>-->
+              </div>
+            </article>
+
+            <!-- Cert 3 -->
+            <article class="cert-card cyber-card reveal-item">
+              <div class="cert-card__preview">
+                <img 
+                  src="images/certs/bug.png" 
+                  alt="AWS Certified Solutions Architect Professional" 
+                  class="cert-card__image"
+                  loading="lazy"
+                  data-lightbox="certs"
+                  data-caption="AWS Certified Solutions Architect – Professional (SAP-C02) // Amazon Web Services"
+                >
+                <div class="cert-card__badge-overlay">0day</div>
+              </div>
+              <div class="cert-card__meta">
+                <h3 class="cert-card__title">Bug Bounty Hunting</h3>
+                <div class="cert-card__issuer">0day Academy</div>
+                <!--<div class="cert-card__date">Issued: 2024 // Active</div>-->
+              </div>
+            </article>
+
+            <!-- Cert 4 -->
+            <article class="cert-card cyber-card reveal-item">
+              <div class="cert-card__preview">
+                <img 
+                  src="images/certs/red1.png" 
+                  alt="CCSP Certification" 
+                  class="cert-card__image"
+                  loading="lazy"
+                  data-lightbox="certs"
+                  data-caption="CCSP — Certified Cloud Security Professional // Cloud Security Alliance"
+                >
+                <div class="cert-card__badge-overlay">0day</div>
+              </div>
+              <div class="cert-card__meta">
+                <h3 class="cert-card__title">Red Teaming lvl 1</h3>
+                <div class="cert-card__issuer">0day Academy</div>
+                <!--<div class="cert-card__date">Issued: 2024 // Active</div>-->
+              </div>
+            </article>
+
+            <!-- Cert 5 
+            <article class="cert-card cyber-card reveal-item">
+              <div class="cert-card__preview">
+                <img 
+                  src="images/certs/cert5.jpg" 
+                  alt="CKA Certification" 
+                  class="cert-card__image"
+                  loading="lazy"
+                  data-lightbox="certs"
+                  data-caption="CKA — Certified Kubernetes Administrator // Cloud Native Computing Foundation"
+                >
+                <div class="cert-card__badge-overlay">CNCF</div>
+              </div>
+              <div class="cert-card__meta">
+                <h3 class="cert-card__title">CKA — Certified Kubernetes Administrator</h3>
+                <div class="cert-card__issuer">Linux Foundation / CNCF</div>
+                <div class="cert-card__date">Issued: 2023 // Active</div>
+              </div>
+            </article>
+
+            Cert 6 
+            <article class="cert-card cyber-card reveal-item">
+              <div class="cert-card__preview">
+                <img 
+                  src="images/certs/cert6.jpg" 
+                  alt="CompTIA Security+ Certification" 
+                  class="cert-card__image"
+                  loading="lazy"
+                  data-lightbox="certs"
+                  data-caption="CompTIA Security+ (SY0-701) // Systems Defense &amp; Cryptographic Assurance"
+                >
+                <div class="cert-card__badge-overlay">COMPTIA</div>
+              </div>
+              <div class="cert-card__meta">
+                <h3 class="cert-card__title">CompTIA Security+ (SY0-701)</h3>
+                <div class="cert-card__issuer">CompTIA</div>
+                <div class="cert-card__date">Issued: 2023 // Active</div>
+              </div>
+            </article>-->
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           10. CONTACT SECTION
+           Terminal transmission console with interactive form & direct channels.
+           To change contact info: replace [MY EMAIL], [URL] placeholders.
+           ====================================================================== -->
+      <section class="section contact" id="contact" aria-label="Contact Section">
+        <div class="container">
+          
+          <header class="section-header reveal-item">
+            <div class="section-cmd"><span class="section-cmd__prompt">&gt;</span> ssh guest@secure-gateway.link</div>
+            <h2 class="section-title">CONTACT / TRANSMISSION</h2>
+            <p class="section-desc">Open an encrypted communication channel. All packets routed via TLS 1.3.</p>
+          </header>
+
+          <div class="contact__grid">
+            
+            <!-- Direct Channels & Coordinates -->
+            <div class="contact-info__card cyber-card reveal-item">
+              <h3 class="contact-info__title">SECURE CHANNELS</h3>
+              <p class="contact-info__desc">
+                Available for networking, cybersecurity and software engineering roles.
+              </p>
+
+              <div class="contact-info__channels">
+                <!--
+                <div class="contact-channel">
+                  <span class="contact-channel__label">Direct Mail</span>
+                  <div>
+                    <span class="contact-channel__val">zinwen12@gmail.com</span>
+                    <button type="button" class="contact-channel__copy" data-copy="[MY EMAIL]" aria-label="Copy email address">COPY</button>
+                  </div>
+                </div>
+                
+                <div class="contact-channel">
+                  <span class="contact-channel__label">PGP Key ID</span>
+                  <div>
+                    <span class="contact-channel__val">0x9F4C2A18</span>
+                    <button type="button" class="contact-channel__copy" data-copy="0x9F4C2A18" aria-label="Copy PGP Key ID">COPY</button>
+                  </div>
+                </div>
+
+                <div class="contact-channel">
+                  <span class="contact-channel__label">Matrix Mesh</span>
+                  <div>
+                    <span class="contact-channel__val">@root:cybermesh.org</span>
+                    <button type="button" class="contact-channel__copy" data-copy="@root:cybermesh.org" aria-label="Copy Matrix ID">COPY</button>
+                  </div>
+                </div>
+
+                <div class="contact-channel">
+                  <span class="contact-channel__label">Cipher Mode</span>
+                  <span class="contact-channel__val">CHACHA20-POLY1305</span>
+                </div>-->
+
+              </div>
+
+              <!-- Social Links -->
+              <div class="social-links">
+                <a href="https://github.com/AricChong12" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub Profile">
+                  <span>[ GITHUB ]</span>
+                </a>
+                <a href="https://www.linkedin.com/in/zin-w-38323b238/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn Profile">
+                  <span>[ LINKEDIN ]</span>
+                </a>
+                <a href="https://12aaronchong.wixsite.com/zinwen" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn Profile">
+                  <span>[ WIX ]</span>
+                </a>
+                <a href="https://linktr.ee/zinwen" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn Profile">
+                  <span>[ LINKTREE ]</span>
+                </a>
+                <a href="mailto:zinwen12@gmail.com" class="social-link" aria-label="Direct Email Client">
+                  <span>[ TRANSMIT EMAIL ]</span>
+                </a>
+              </div>
+
+            </div>
+
+            <!-- Terminal Form 
+            <div class="cyber-card reveal-item" style="padding: 32px;">
+              
+              <div class="terminal-header" style="margin: -32px -32px 24px -32px;">
+                <div class="terminal-header__dots">
+                  <span class="terminal-dot terminal-dot--cyan"></span>
+                  <span class="terminal-dot terminal-dot--cyan"></span>
+                  <span class="terminal-dot terminal-dot--cyan"></span>
+                </div>
+                <div class="terminal-header__title">payload_dispatch.sh</div>
+                <div class="terminal-header__status">SECURE</div>
+              </div>
+
+              <form class="contact-form" id="contact-form">
+                
+                <div class="form-group">
+                  <label for="form-name" class="form-label">IDENTIFIER / NAME</label>
+                  <input type="text" id="form-name" class="form-input" placeholder="e.g. Neo / Operator" required autocomplete="name">
+                </div>
+
+                <div class="form-group">
+                  <label for="form-email" class="form-label">FREQUENCY / EMAIL</label>
+                  <input type="email" id="form-email" class="form-input" placeholder="e.g. operator@domain.com" required autocomplete="email">
+                </div>
+
+                <div class="form-group">
+                  <label for="form-message" class="form-label">PAYLOAD / MESSAGE</label>
+                  <textarea id="form-message" class="form-textarea" placeholder="Enter transmission payload details..." required></textarea>
+                </div>
+
+                <div class="form-status" id="form-status" aria-live="polite">&gt; [STATUS: READY TO DISPATCH]</div>
+
+                <button type="submit" class="cyber-btn cyber-btn--primary" id="btn-submit">
+                  <span>[ DISPATCH TRANSMISSION ]</span>
+                </button>
+
+              </form>
+
+            </div>-->
+
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ======================================================================
+         FOOTER
+         System status, copyright, and telemetry.
+         ====================================================================== -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="container footer__container">
+        
+        <div class="footer__brand">Zin Wen // SYSTEM PORTFOLIO</div>
+
+        <ul class="footer__socials">
+          <li><a href="https://github.com/AricChong12" target="_blank" rel="noopener noreferrer" class="footer__social-link">[ GITHUB ]</a></li>
+          <li><a href="https://www.linkedin.com/in/zin-w-38323b238/" target="_blank" rel="noopener noreferrer" class="footer__social-link">[ LINKEDIN ]</a></li>
+          <li><a href="mailto:zinwen12@gmail.com" class="footer__social-link">[ EMAIL ]</a></li>
+        </ul>
+
+        <div class="footer__terminal-line">
+          &copy; 2026 Zin Wen &mdash; system online. All transmissions encrypted.
+        </div>
+
+        <div class="footer__telemetry">
+          PROTOCOL: HTTPS/3 // CIPHER: CHACHA20-POLY1305 // ENGINE: VANILLA_ES6+
+        </div>
+
+        <a href="#home" class="footer__top-btn" aria-label="Back to Top">
+          <span>[^ RETURN TO TOP]</span>
+        </a>
+
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ======================================================================
+       REUSABLE SHARED CYBER LIGHTBOX COMPONENT
+       Used globally for project carousels, certifications, and profile photo.
+       Features: Zoom 1x/2x, drag pan, mouse wheel zoom, keyboard arrows, Esc.
+       ====================================================================== -->
+  <div class="lightbox" id="shared-lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Enlarged Image Viewer">
+    
+    <!-- Top Bar Controls -->
+    <div class="lightbox__header">
+      <div class="lightbox__group-info">NODE // ASSET PREVIEW</div>
+      <div class="lightbox__controls">
+        <button type="button" class="lightbox__btn lightbox__btn--zoom" aria-label="Toggle Zoom level (1x or 2x)">[ 2X ]</button>
+        <button type="button" class="lightbox__btn lightbox__btn--reset" aria-label="Reset Zoom and Pan">[ RESET ]</button>
+        <button type="button" class="lightbox__btn lightbox__btn--close" aria-label="Close Lightbox (Esc)">&#10005; [ESC]</button>
+      </div>
+    </div>
+
+    <!-- Main Viewport with Image -->
+    <div class="lightbox__viewport">
+      <button type="button" class="lightbox__nav lightbox__nav--prev" aria-label="Previous Image">&#10094;</button>
+      
+      <div class="lightbox__stage">
+        <img src="" alt="Enlarged Asset Preview" class="lightbox__img">
+      </div>
+
+      <button type="button" class="lightbox__nav lightbox__nav--next" aria-label="Next Image">&#10095;</button>
+    </div>
+
+    <!-- Bottom Caption & Counter -->
+    <div class="lightbox__footer">
+      <div class="lightbox__caption">Loading asset telemetry...</div>
+      <div class="lightbox__counter">[ 01 / 01 ]</div>
+    </div>
+
+  </div>
+
+</body>
+</html>
